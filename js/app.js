@@ -4,6 +4,7 @@
 let allItems = [];
 let selections = 0;
 let selectionsAllowed = 25;
+let displayValidation = []; //use array to make sure no two images are rendered together
 //dom footholds
 let imagesContainer = document.querySelector('section');
 let imageOne = document.querySelector('#img-1');
@@ -72,13 +73,18 @@ function getRandomIndex(){
 //pull object from allItems with index
 //add object.src to img element in index.html
 function renderItems(){
-  for(let i = 0; i < 3; i++){
+  for(let i = 0; i < 3;){
     let index = getRandomIndex();
-    let image = document.querySelector(`#img-${i+1}`);
-    image.src = allItems[index].src;
-    image.alt = allItems[index].name;
-    allItems[index].viewed++;
+    if (!displayValidation.includes(allItems[index])){
+      displayValidation.push(allItems[index]);
+      let image = document.querySelector(`#img-${i+1}`);
+      image.src = allItems[index].src;
+      image.alt = allItems[index].name;
+      allItems[index].viewed++;
+      i++;
+    }
   }
+  displayValidation = [];
 }
 
 function renderResults(){
