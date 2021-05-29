@@ -1,0 +1,53 @@
+body{
+  padding:25px;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+header{
+  text-align:center;
+  border-bottom: solid 2px black;
+  border-width: 75%;
+}
+
+h1{
+  font-size: 3em;
+  margin-top: 50px;
+}
+
+main{
+  display: grid;
+  grid-template-columns: 33% 67%;
+  margin-top: 100px;
+}
+
+main aside{
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+  text-align: center;
+  margin:25px;
+  padding:25px;
+}
+
+#view-results{
+  background-color: rgba(126, 204, 95, 0.404);  
+  backdrop-filter: blur(5px);
+  width: max-content;
+  padding: 10px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+main section{
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+  display: flex;
+  margin: 25px;
+}
+
+section img{
+  width:30%;
+  margin: 25px auto 25px auto;
+}
+
