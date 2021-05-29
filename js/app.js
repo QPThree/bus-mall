@@ -96,7 +96,7 @@ function renderResults(){
 }
 
 //event listeners
-imagesContainer.addEventListener('click', handleContainerClick); //handles misclicks
+imagesContainer.addEventListener('click', handleContainerClick);
 imageOne.addEventListener('click', handleImageClick);
 imageTwo.addEventListener('click', handleImageClick);
 imageThree.addEventListener('click', handleImageClick);
