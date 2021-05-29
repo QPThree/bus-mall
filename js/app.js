@@ -12,8 +12,8 @@ let imageTwo = document.querySelector('#img-2');
 let imageThree = document.querySelector('#img-3');
 let viewResultsButton = document.querySelector('#view-results');
 let resultsContent = document.querySelector('#results');
-// constructor function
 
+// constructor function
 function createItem(name, fileExtension = 'jpg'){
   //properties from arugments
   this.name = name;
@@ -21,7 +21,6 @@ function createItem(name, fileExtension = 'jpg'){
   //other properties
   this.viewed = 0;
   this.clicked = 0;
-
   allItems.push(this);
 }
 
@@ -41,7 +40,6 @@ new createItem('tauntaun');
 new createItem('unicorn');
 new createItem('water-can');
 new createItem('wine-glass');
-
 
 //other functions
 function handleContainerClick(event){
@@ -96,6 +94,7 @@ function renderResults(){
     viewResultsButton.appendChild(p);
   }
 }
+
 //event listeners
 imagesContainer.addEventListener('click', handleContainerClick); //handles misclicks
 imageOne.addEventListener('click', handleImageClick);
@@ -105,7 +104,5 @@ viewResultsButton.addEventListener('click', renderResults);
 
 //proof of life
 
-
 //need to run
-
 renderItems();
