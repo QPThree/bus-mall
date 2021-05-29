@@ -1,3 +1,9 @@
+body{
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 header{
   text-align:center;
 }
@@ -8,15 +14,21 @@ h1{
 main{
   display: grid;
   grid-template-columns: 33% 67%;
+  padding:15px;
 }
 
-aside{
-  background-color: grey;
+main aside{
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
   text-align: center;
+  margin:25px;
 }
 main section{
   background-color: aquamarine;
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
   display: flex;
+  margin: 25px;
 }
 
 section img{

@@ -10,6 +10,7 @@ let imageOne = document.querySelector('#img-1');
 let imageTwo = document.querySelector('#img-2');
 let imageThree = document.querySelector('#img-3');
 let viewResultsButton = document.querySelector('#view-results');
+let resultsContent = document.querySelector('#results');
 // constructor function
 
 function createItem(name, fileExtension = 'jpg'){
@@ -43,7 +44,9 @@ new createItem('wine-glass');
 
 //other functions
 function handleContainerClick(event){
-  // alert('Please select an IMAGE');
+  if (event.target === imagesContainer){
+    alert('Please select an IMAGE');
+  }
 }
 
 function handleImageClick(event){
@@ -79,10 +82,11 @@ function renderItems(){
 }
 
 function renderResults(){
+  resultsContent.innerHTML = '';
   viewResultsButton.innerHTML = '';
   for(let i =0; i < allItems.length; i++){
     let p = document.createElement('p');
-    p.textContent = `${allItems[i].name} : ${allItems[i].clicked} = clicked`;
+    p.textContent = `${allItems[i].name} : ${allItems[i].clicked} / ${allItems[i].viewed}`;
     viewResultsButton.appendChild(p);
   }
 }
