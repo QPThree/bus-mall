@@ -1,0 +1,25 @@
+header{
+  text-align:center;
+}
+h1{
+  font-size: 3em;
+}
+
+main{
+  display: grid;
+  grid-template-columns: 33% 67%;
+}
+
+aside{
+  background-color: grey;
+  text-align: center;
+}
+main section{
+  background-color: aquamarine;
+  display: flex;
+}
+
+section img{
+  width:30%;
+  margin: 25px auto 25px auto;
+}
