@@ -49,5 +49,8 @@ main section{
 section img{
   width:30%;
   margin: 25px auto 25px auto;
+  height: 250px;
+  width: 250px;
+  border: rgb(173, 172, 172) solid 2px;
 }
 
