@@ -53,4 +53,8 @@ section img{
   width: 250px;
   border: rgb(173, 172, 172) solid 2px;
 }
-
+/* chart */
+#chart{
+  width: 900px;
+  height: 900px;
+}

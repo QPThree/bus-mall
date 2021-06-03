@@ -59,6 +59,7 @@ function handleImageClick(event){
   if (selections === selectionsAllowed){
     alert('All done!');
     renderResults();
+    renderChart();
     imagesContainer.textContent = '';
   }
   renderItems();
@@ -66,6 +67,25 @@ function handleImageClick(event){
 
 function getRandomIndex(){
   return Math.floor(Math.random() * allItems.length);
+}
+
+//for loop to get each items name and returns array of them
+function getItemNames(){
+  let namesArr = [];
+  for (let i = 0; i < allItems.length; i++){
+    namesArr.push(allItems[i].name);
+  }
+  return namesArr;
+}
+
+//get all item clicks
+function getItemClicks(){
+  let clicksArr = [];
+  for (let i = 0; i < allItems.length; i++){
+    clicksArr.push(allItems[i].clicked);
+  }
+  console.log(clicksArr);
+  return clicksArr;
 }
 
 //use getrandomindex
@@ -86,7 +106,7 @@ function renderItems(){
   }
   doubleDisplayValidation = [];
 }
-
+//displays chart inside canvas element
 function renderResults(){
   resultsContent.innerHTML = '';
   viewResultsButton.innerHTML = '';
@@ -97,6 +117,46 @@ function renderResults(){
   }
 }
 
+function renderChart(){
+  let ctx = document.getElementById('chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: getItemNames(),
+      datasets: [{
+        label: '# of Clicks',
+        data: getItemClicks(),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+
+
 //event listeners
 imagesContainer.addEventListener('click', handleContainerClick);
 imageOne.addEventListener('click', handleImageClick);
@@ -105,6 +165,9 @@ imageThree.addEventListener('click', handleImageClick);
 viewResultsButton.addEventListener('click', renderResults);
 
 //proof of life
+console.log(getItemNames());
 
 //need to run
 renderItems();
+
+
