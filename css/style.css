@@ -40,8 +40,16 @@ main aside{
   border-radius: 10px;
 }
 
+#view-results h2{
+  color:rgba(28, 149, 248, 0.973);
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Vollkorn', serif;
+}
+
 main section{
   border-radius: 45px;
+  
   background: linear-gradient(145deg, #fcfcfc, #dbdbdb);
   box-shadow:  30px 30px 60px #9f9b9b,
              -30px -30px 60px #ffffff;
