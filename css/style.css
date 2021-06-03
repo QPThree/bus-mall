@@ -16,7 +16,7 @@ h1{
   margin-top: 50px;
 }
 
-main{
+#top{
   display: grid;
   grid-template-columns: 33% 67%;
   margin-top: 100px;
