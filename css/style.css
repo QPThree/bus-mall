@@ -71,6 +71,7 @@ section img{
   
 }
 canvas{
+  padding: 10px;
   border-radius: 45px;
   background: linear-gradient(145deg, #fcfcfc, #dbdbdb);
   box-shadow:  30px 30px 60px #9f9b9b,
