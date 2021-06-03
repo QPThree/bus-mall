@@ -59,7 +59,8 @@ function handleImageClick(event){
   if (selections === selectionsAllowed){
     alert('All done!');
     renderResults();
-    renderChart();
+    renderMainChart();
+    renderRatioChart();
     imagesContainer.textContent = '';
   }
   renderItems();
@@ -98,6 +99,17 @@ function getItemViews(){
   return viewsArr;
 }
 
+function getViewToClickRatio(){
+  let viewsArr = getItemViews();
+  let clicksArr = getItemClicks();
+  let ratioArr = [];
+
+  for (let i = 0; i<allItems.length; i++){
+    ratioArr.push(clicksArr[i] / viewsArr[i]);
+  }
+  console.log(ratioArr);
+  return ratioArr;
+}
 //use getrandomindex
 //pull object from allItems with index
 //add object.src to img element in index.html
@@ -126,8 +138,8 @@ function renderResults(){
     viewResultsButton.appendChild(p);
   }
 }
-
-function renderChart(){
+//renders main item click and views chart
+function renderMainChart(){
   let ctx = document.getElementById('chart').getContext('2d');
   new Chart(ctx, {
     type: 'bar',
@@ -185,7 +197,44 @@ function renderChart(){
   });
 }
 
-
+//renders ratio of an items click to views
+function renderRatioChart(){
+  let ctx = document.getElementById('ratio-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+      labels: getItemNames(),
+      datasets: [{
+        label: 'Clicks : Views Ratio',
+        data: getViewToClickRatio(),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
 
 //event listeners
 imagesContainer.addEventListener('click', handleContainerClick);
