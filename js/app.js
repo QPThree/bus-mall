@@ -5,6 +5,9 @@ let allItems = [];
 let selections = 0;
 let selectionsAllowed = 25;
 let doubleDisplayValidation = []; //use array to make sure no two images are rendered together
+//testing for new queue array object
+let doubleDisplayValidationQueue = new QueueArray();
+
 let consecutiveDisplayValidation = [];
 //dom footholds
 let imagesContainer = document.querySelector('section');
@@ -24,6 +27,19 @@ function createItem(name, fileExtension = 'jpg'){
   this.clicked = 0;
   allItems.push(this);
 }
+//queue array contructor
+function QueueArray(){
+  this.elements = [];
+}
+//method to add to end of queue via push()
+QueueArray.prototype.addToQueue = function (e) {
+  this.elements.push(e);
+};
+//method to remover from beginning of queue via shift()
+QueueArray.prototype.removeFromQueue = function (){
+  return this.elements.shift();
+};
+
 
 new createItem('bag', 'jpg');
 new createItem('breakfast');
