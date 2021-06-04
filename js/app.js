@@ -4,11 +4,8 @@
 let allItems = [];
 let selections = 0;
 let selectionsAllowed = 25;
-let doubleDisplayValidation = []; //use array to make sure no two images are rendered together
-//testing for new queue array object
-let doubleDisplayValidationQueue = new QueueArray();
 
-let consecutiveDisplayValidation = [];
+
 //dom footholds
 let imagesContainer = document.querySelector('section');
 let imageOne = document.querySelector('#img-1');
@@ -18,7 +15,7 @@ let viewResultsButton = document.querySelector('#view-results');
 let resultsContent = document.querySelector('#results');
 
 // constructor function
-function createItem(name, fileExtension = 'jpg'){
+function CreateItem(name, fileExtension = 'jpg'){
   //properties from arugments
   this.name = name;
   this.src = `./img/${name}.${fileExtension}`;
@@ -29,7 +26,7 @@ function createItem(name, fileExtension = 'jpg'){
 }
 //queue array contructor
 function QueueArray(){
-  this.elements = [];
+  this.elements = new Array(6);
 }
 //method to add to end of queue via push()
 QueueArray.prototype.addToQueue = function (e) {
@@ -41,23 +38,24 @@ QueueArray.prototype.removeFromQueue = function (){
 };
 
 
-new createItem('bag', 'jpg');
-new createItem('breakfast');
-new createItem('bubblegum');
-new createItem('chair');
-new createItem('cthulhu');
-new createItem('dog-duck');
-new createItem('dragon');
-new createItem('pen');
-new createItem('pet-sweep');
-new createItem('scissors');
-new createItem('shark');
-new createItem('sweep', 'png');
-new createItem('tauntaun');
-new createItem('unicorn');
-new createItem('water-can');
-new createItem('wine-glass');
+new CreateItem('bag', 'jpg');
+new CreateItem('breakfast');
+new CreateItem('bubblegum');
+new CreateItem('chair');
+new CreateItem('cthulhu');
+new CreateItem('dog-duck');
+new CreateItem('dragon');
+new CreateItem('pen');
+new CreateItem('pet-sweep');
+new CreateItem('scissors');
+new CreateItem('shark');
+new CreateItem('sweep', 'png');
+new CreateItem('tauntaun');
+new CreateItem('unicorn');
+new CreateItem('water-can');
+new CreateItem('wine-glass');
 
+let doubleDisplayValidationQueue = new QueueArray();
 //other functions
 function handleContainerClick(event){
   if (event.target === imagesContainer){
@@ -132,9 +130,10 @@ function getViewToClickRatio(){
 function renderItems(){
   for(let i = 0; i < 3;){
     let index = getRandomIndex();
-    if ((!doubleDisplayValidation.includes(allItems[index])) && (!consecutiveDisplayValidation.includes(allItems[index]))){
-      doubleDisplayValidation.push(allItems[index]);
-      consecutiveDisplayValidation[i] = allItems[index];
+    let item = allItems[index];
+    if ((!doubleDisplayValidationQueue.elements.includes(item))){
+      doubleDisplayValidationQueue.addToQueue(item);
+      doubleDisplayValidationQueue.removeFromQueue();
       let image = document.querySelector(`#img-${i+1}`);
       image.src = allItems[index].src;
       image.alt = allItems[index].name;
@@ -142,7 +141,6 @@ function renderItems(){
       i++;
     }
   }
-  doubleDisplayValidation = [];
 }
 //displays chart inside canvas element
 function renderResults(){
