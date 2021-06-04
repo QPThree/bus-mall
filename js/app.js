@@ -1,10 +1,8 @@
 'use strict';
-
 //global variables
 let allItems = [];
 let selections = 0;
 let selectionsAllowed = 25;
-
 
 //dom footholds
 let imagesContainer = document.querySelector('section');
@@ -14,7 +12,8 @@ let imageThree = document.querySelector('#img-3');
 let viewResultsButton = document.querySelector('#view-results');
 let resultsContent = document.querySelector('#results');
 
-// constructor function
+// ---constructor functions---
+//constructor for images
 function CreateItem(name, fileExtension = 'jpg'){
   //properties from arugments
   this.name = name;
@@ -24,7 +23,7 @@ function CreateItem(name, fileExtension = 'jpg'){
   this.clicked = 0;
   allItems.push(this);
 }
-//queue array contructor
+//constructor for queue array
 function QueueArray(){
   this.elements = new Array(6);
 }
@@ -37,7 +36,7 @@ QueueArray.prototype.removeFromQueue = function (){
   return this.elements.shift();
 };
 
-
+//create objects
 new CreateItem('bag', 'jpg');
 new CreateItem('breakfast');
 new CreateItem('bubblegum');
@@ -54,15 +53,15 @@ new CreateItem('tauntaun');
 new CreateItem('unicorn');
 new CreateItem('water-can');
 new CreateItem('wine-glass');
-
+//queue list for validation
 let doubleDisplayValidationQueue = new QueueArray();
-//other functions
+
+//gener functions
 function handleContainerClick(event){
   if (event.target === imagesContainer){
     alert('Please select an IMAGE');
   }
 }
-
 function handleImageClick(event){
   for (let i = 0; i < allItems.length; i++){
     if (allItems[i].name === event.target.alt){
@@ -79,11 +78,9 @@ function handleImageClick(event){
   }
   renderItems();
 }
-
 function getRandomIndex(){
   return Math.floor(Math.random() * allItems.length);
 }
-
 //for loop to get each items name and returns array of them
 function getItemNames(){
   let namesArr = [];
@@ -92,7 +89,6 @@ function getItemNames(){
   }
   return namesArr;
 }
-
 //get all item clicks
 function getItemClicks(){
   let clicksArr = [];
@@ -102,7 +98,6 @@ function getItemClicks(){
   console.log(clicksArr);
   return clicksArr;
 }
-
 //get all item views
 function getItemViews(){
   let viewsArr = [];
@@ -112,7 +107,7 @@ function getItemViews(){
   console.log(viewsArr);
   return viewsArr;
 }
-
+//used to render second chart
 function getViewToClickRatio(){
   let viewsArr = getItemViews();
   let clicksArr = getItemClicks();
@@ -124,7 +119,7 @@ function getViewToClickRatio(){
   console.log(ratioArr);
   return ratioArr;
 }
-//use getrandomindex
+//uses getrandomindex
 //pull object from allItems with index
 //add object.src to img element in index.html
 function renderItems(){
@@ -210,7 +205,6 @@ function renderMainChart(){
     }
   });
 }
-
 //renders ratio of an items click to views
 function renderRatioChart(){
   let ctx = document.getElementById('ratio-chart').getContext('2d');
@@ -257,10 +251,10 @@ imageTwo.addEventListener('click', handleImageClick);
 imageThree.addEventListener('click', handleImageClick);
 viewResultsButton.addEventListener('click', renderResults);
 
-//proof of life
-console.log(getItemNames());
+//proof of life if needed
 
-//need to run
+
+//need to run for page to work
 renderItems();
 
 
