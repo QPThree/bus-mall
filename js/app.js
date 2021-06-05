@@ -36,23 +36,33 @@ QueueArray.prototype.removeFromQueue = function (){
   return this.elements.shift();
 };
 
+//pull items from storage
+//1. getItems
+let retrievedAllItems = localStorage.getItem('allItems');
+if (retrievedAllItems){
+  //2. JSON.parse the items
+  retrievedAllItems = JSON.parse(retrievedAllItems);
+  allItems = retrievedAllItems;
+
+}else{
+  new CreateItem('bag', 'jpg');
+  new CreateItem('breakfast');
+  new CreateItem('bubblegum');
+  new CreateItem('chair');
+  new CreateItem('cthulhu');
+  new CreateItem('dog-duck');
+  new CreateItem('dragon');
+  new CreateItem('pen');
+  new CreateItem('pet-sweep');
+  new CreateItem('scissors');
+  new CreateItem('shark');
+  new CreateItem('sweep', 'png');
+  new CreateItem('tauntaun');
+  new CreateItem('unicorn');
+  new CreateItem('water-can');
+  new CreateItem('wine-glass');
+}
 //create objects
-new CreateItem('bag', 'jpg');
-new CreateItem('breakfast');
-new CreateItem('bubblegum');
-new CreateItem('chair');
-new CreateItem('cthulhu');
-new CreateItem('dog-duck');
-new CreateItem('dragon');
-new CreateItem('pen');
-new CreateItem('pet-sweep');
-new CreateItem('scissors');
-new CreateItem('shark');
-new CreateItem('sweep', 'png');
-new CreateItem('tauntaun');
-new CreateItem('unicorn');
-new CreateItem('water-can');
-new CreateItem('wine-glass');
 //queue list for validation
 let doubleDisplayValidationQueue = new QueueArray();
 
@@ -75,6 +85,13 @@ function handleImageClick(event){
     renderMainChart();
     renderRatioChart();
     imagesContainer.textContent = '';
+
+    //add allItems array to local storage
+    //1. stringify
+    let stringifiedAllItems = JSON.stringify(allItems);
+    //2. add to local storage
+    localStorage.setItem('allItems', stringifiedAllItems);
+
   }
   renderItems();
 }
