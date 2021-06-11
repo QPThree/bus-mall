@@ -45,9 +45,10 @@ if (retrievedAllItems){
   allItems = retrievedAllItems;
 
 }else{
-  new CreateItem('bag', 'jpg');
+  new CreateItem('bag');
   new CreateItem('breakfast');
   new CreateItem('bubblegum');
+  new CreateItem('bathroom');
   new CreateItem('chair');
   new CreateItem('cthulhu');
   new CreateItem('dog-duck');
@@ -91,7 +92,7 @@ function handleImageClick(event){
     let stringifiedAllItems = JSON.stringify(allItems);
     //2. add to local storage
     localStorage.setItem('allItems', stringifiedAllItems);
-
+    return;
   }
   renderItems();
 }
@@ -112,7 +113,6 @@ function getItemClicks(){
   for (let i = 0; i < allItems.length; i++){
     clicksArr.push(allItems[i].clicked);
   }
-  console.log(clicksArr);
   return clicksArr;
 }
 //get all item views
@@ -121,7 +121,6 @@ function getItemViews(){
   for (let i = 0; i < allItems.length; i++){
     viewsArr.push(allItems[i].viewed);
   }
-  console.log(viewsArr);
   return viewsArr;
 }
 //used to render second chart
@@ -133,7 +132,6 @@ function getViewToClickRatio(){
   for (let i = 0; i<allItems.length; i++){
     ratioArr.push(clicksArr[i] / viewsArr[i]);
   }
-  console.log(ratioArr);
   return ratioArr;
 }
 //uses getrandomindex
@@ -147,6 +145,7 @@ function renderItems(){
       doubleDisplayValidationQueue.addToQueue(item);
       doubleDisplayValidationQueue.removeFromQueue();
       let image = document.querySelector(`#img-${i+1}`);
+      console.log(allItems[index]);
       image.src = allItems[index].src;
       image.alt = allItems[index].name;
       allItems[index].viewed++;
