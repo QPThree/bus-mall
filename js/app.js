@@ -17,7 +17,7 @@ let resultsContent = document.querySelector('#results');
 function CreateItem(name, fileExtension = 'jpg'){
   //properties from arugments
   this.name = name;
-  this.src = `./img/${name}.${fileExtension}`;
+  this.src = `../img/${name}.${fileExtension}`;
   //other properties
   this.viewed = 0;
   this.clicked = 0;
@@ -145,7 +145,6 @@ function renderItems(){
       doubleDisplayValidationQueue.addToQueue(item);
       doubleDisplayValidationQueue.removeFromQueue();
       let image = document.querySelector(`#img-${i+1}`);
-      console.log(allItems[index]);
       image.src = allItems[index].src;
       image.alt = allItems[index].name;
       allItems[index].viewed++;
