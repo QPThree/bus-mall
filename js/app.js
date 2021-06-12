@@ -17,7 +17,7 @@ let resultsContent = document.querySelector('#results');
 function CreateItem(name, fileExtension = 'jpg'){
   //properties from arugments
   this.name = name;
-  this.src = `../img/${name}.${fileExtension}`;
+  this.src = `./img/${name}.${fileExtension}`;
   //other properties
   this.viewed = 0;
   this.clicked = 0;
